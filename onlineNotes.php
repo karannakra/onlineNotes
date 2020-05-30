@@ -1,3 +1,12 @@
+<?php
+session_start();
+include "connection.php";
+//logout
+include "logout.php";
+
+//remember me file
+include "rememberme.php";
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -11,11 +20,10 @@
             background-attachment: fixed;
             background-size: cover;
         }
-       a{
-           font-family: Georgia;
-       }
+        a{
+            font-family: Georgia, serif;
+        }
         .footer{
-            padding-top:10px;
             text-align: center;
             width: 100%;
             position: absolute;
@@ -28,6 +36,9 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
     <link href="main.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+
+
     <title>Online Notes</title>
     <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <link href="css/bootstrap.min.css">
@@ -61,10 +72,16 @@
     <h1 class="display-4"><strong>Online Notes</strong></h1>
     <h3>Take your notes with you!Wherever you Go</h3>
     <h4>Easy to use,Protects all your Notes</h4>
-    <button type="button" class="btn btn-lg btn-success" data-toggle="modal" data-target="#signupmodal" id="signup">Sign up It's Free</button>
+    <button type="button" class="btn btn-lg btn-success mb-2" data-toggle="modal" data-target="#signupmodal" id="signup">Sign up It's Free</button>
+</div>
+<!--Footer-->
+<div class="footer">
+    <div class="container">
+        <p><strong>Developed by karan Full stack Developer &copy;2019-20<?php $today=date("y");echo $today?></strong></p>
+    </div>
 </div>
 <!--Login Form-->
-<form method="post" id="signinform" class="needs-validation" novalidate>
+<form method="post" id="signinform" >
     <!-- The Modal -->
     <div class="modal fade" id="signinmodal">
         <div class="modal-dialog modal-lg">
@@ -75,29 +92,28 @@
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <!-- Modal body -->
+                <div id="signinmessage">
+                </div>
                 <div class="modal-body">
                     <div class="form-group input-group">
                         <label for="loginemail"></label>
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-user"></i></span>
                         </div>
-                        <input type="text" class="form-control" id="loginemail" placeholder="Enter email" name="loginemail" required>
-                        <div class="valid-feedback">Valid.</div>
-                        <div class="invalid-feedback">Please fill out this field.</div>
+                        <input type="text" class="form-control" id="loginemail" placeholder="Enter email" name="loginemail">
                     </div>
                     <div class="form-group input-group">
                         <label for="loginpaswd"></label>
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-lock"></i></span>
                         </div>
-                        <input type="password" class="form-control" id="loginpaswd" placeholder="Choose password.." name="loginpaswd" required>
-                        <div class="valid-feedback">Valid.</div>
-                        <div class="invalid-feedback">Please fill out this field.</div>
+                        <input type="password" class="form-control" id="loginpaswd" placeholder="Choose password.." name="loginpaswd" >
+
                     </div>
                     <div class="custom-control custom-switch">
                         <input type="checkbox" class="custom-control-input" id="switch1" name="rememberme">
                         <label class="custom-control-label" for="switch1" >Remember Me</label>
-                        <a href="#" class="float-lg-right float-md-right float-right    " data-target="#forgotpassmodal" data-toggle="modal" data-dismiss="modal">Forgot Password?</a>
+                        <a href="#" class="float-lg-right float-md-right float-right" data-target="#forgotpassmodal" data-toggle="modal" data-dismiss="modal">Forgot Password?</a>
                     </div>
                 </div>
                 <!-- Modal footer -->
@@ -113,7 +129,7 @@
 </form>
 
 <!--Sign up Form-->
-<form method="post" id="signupform" class="needs-validation" novalidate>
+<form method="post" id="signupform" >
     <!-- The Modal -->
     <div class="modal fade" id="signupmodal">
         <div class="modal-dialog">
@@ -125,46 +141,42 @@
                 </div>
                 <!-- Modal body -->
                 <div class="modal-body">
+                    <!--                    signup Message from php file-->
+                    <div id="signupmessage">
+                    </div>
                     <div class="form-group input-group mb-3">
                         <label for="usrname"></label>
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-user"></i></span>
                         </div>
-                        <input type="text" class="form-control" id="usrname" placeholder="Enter username" name="username" required>
-                        <div class="valid-feedback">Valid.</div>
-                        <div class="invalid-feedback">Please fill out this field.</div>
+                        <input type="text" class="form-control" id="usrname" placeholder="Enter username" name="username" >
                     </div>
                     <div class="form-group input-group">
                         <label for="signupemail"></label>
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-envelope"></i></span>
                         </div>
-                        <input type="text" class="form-control" id="signupemail" placeholder="Enter email" name="email" required>
-                        <div class="valid-feedback">Valid.</div>
-                        <div class="invalid-feedback">Please fill out this field.</div>
+                        <input type="text" class="form-control" id="signupemail" placeholder="Enter email" name="email" >
                     </div>
                     <div class="form-group input-group">
                         <label for="signuppwd"></label>
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-lock"></i></span>
                         </div>
-                        <input type="password" class="form-control" id="signuppwd" placeholder="Choose password.." name="signuppswd" required>
-                        <div class="valid-feedback">Valid.</div>
-                        <div class="invalid-feedback">Please fill out this field.</div>
+                        <input type="password" class="form-control" id="signuppwd" placeholder="Choose password.." name="signuppswd" >
                     </div>
                     <div class="form-group input-group">
                         <label for="signuppwd1"></label>
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-lock"></i></span>
                         </div>
-                        <input type="password" class="form-control" id="signuppwd1" placeholder="Confirm Password.." name="signuppswd1" required>
-                        <div class="valid-feedback">Valid.</div>
-                        <div class="invalid-feedback">Please fill out this field.</div>
+                        <input type="password" class="form-control" id="signuppwd1" placeholder="Confirm Password.." name="signuppswd1" >
                     </div>
                 </div>
                 <!-- Modal footer -->
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-success">Signup</button>
+                    <label for="signup"></label>
+                    <input type="submit" class="btn btn-success" id="signup" value="submit">
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                 </div>
 
@@ -195,53 +207,27 @@
                         <div class="invalid-feedback">Please fill out this field.</div>
                     </div>
 
-                <!-- Modal footer -->
-                <div class="modal-footer">
-                    <button data-target="#signupmodal" data-dismiss="modal" data-toggle="modal" type="button" class="btn btn-outline-primary mr-auto">Register</button>
-                    <button type="submit" class="btn btn-success">Submit</button>
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <button data-target="#signupmodal" data-dismiss="modal" data-toggle="modal" type="button" class="btn btn-outline-primary mr-auto">Register</button>
+                        <button type="submit" class="btn btn-success">Submit</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
 </form>
 
 
+<!-- Optional JavaScript-->
 
-<!--Footer-->
-<div class="footer">
-    <div class="container">
-        <p><strong>Developed by karan Full stack Developer &copy;2019-20<?php $today=date("y");echo $today?></strong></p>
-    </div>
-</div>
-
-<!-- Optional JavaScript -->
-<script>
-    // Disable form submissions if there are invalid fields
-    (function() {
-        'use strict';
-        window.addEventListener('load', function() {
-            // Get the forms we want to add validation styles to
-            var forms = document.getElementsByClassName('needs-validation');
-            // Loop over them and prevent submission
-            var validation = Array.prototype.filter.call(forms, function(form) {
-                form.addEventListener('submit', function(event) {
-                    if (form.checkValidity() === false) {
-                        event.preventDefault();
-                        event.stopPropagation();
-                    }
-                    form.classList.add('was-validated');
-                }, false);
-            });
-        }, false);
-    })();
-</script>
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <!-- The core Firebase JS SDK is always required and must be listed first -->
-
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+<script src="index.js" type="text/javascript"></script>
 </body>
 </html>

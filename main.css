@@ -7,6 +7,7 @@
     margin-top: 110px;
 
 }
+
 .btn-success{
     margin-top:30px;
 }
@@ -110,7 +111,6 @@ html{
     border-top-color: #ffffff;
     border-bottom-color: #ffffff;
 }
-@media (max-width: 767px) {
     .navbar-custom .navbar-nav .open .dropdown-menu > li > a {
         color: #ffffff;
     }
@@ -131,7 +131,7 @@ html{
         color: #cccccc;
         background-color: transparent;
     }
-}
+
 .navbar-custom .navbar-link {
     color: #ffffff;
 }
