@@ -50,7 +50,21 @@ $("#signinform").submit(function (event) {
     });
 
 });
-$("#logout").submit(function (event) {
+$("#forgotpassform").submit(function (event) {
+    //prevent default by php
     event.preventDefault();
-    window.location="onlineNotes.php";
+    var datatonewpost=$(this).serializeArray();
+    $.ajax({
+        url:"forgot.php",
+        type:"POST",
+        data:datatonewpost,
+        success:function (data) {
+                $("#frgtpsw").html(data);
+
+        },
+        error:function () {
+                    $("#frgtpsw").html("<div class='alert alert-danger'>cannot create the ajax call</div>");
+        }
+    })
+
 });

@@ -1,5 +1,4 @@
 <?php
-session_start();
 if(!isset($_SESSION['user_id']) && !empty($_COOKIE['remmeberme'])){
     //extract $authentificator 1&2 from the cookie
     list($authentificator1,$authentificator2)=explode(',',$_COOKIE['remmeberme']);

@@ -1,3 +1,9 @@
+<?php
+session_start();
+if(!isset($_SESSION['user_id'])){
+    header("location:index.php");
+}
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -45,7 +51,7 @@
     <div class="collapse navbar-collapse" id="collapsibleNavbar">
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
             <li class="nav-item">
-                <a class="nav-link active" href="#">Profile</a>
+                <a class="nav-link active" href="profile.php">Profile</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">Help</a>
@@ -54,7 +60,7 @@
                 <a class="nav-link" href="#">Contact Us</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">My notes</a>
+                <a class="nav-link" id="log" href="loggedin.php">My notes</a>
             </li>
         </ul>
         <form class="form-inline my-2 my-lg-0 mr-lg-3 mr-md-3">
@@ -86,7 +92,7 @@
         </tr>
     </table>
 </div>
-<form method="post" id="updatenameform" class="needs-validation" novalidate>
+<form method="post" id="updatenameform" >
     <!-- The Modal -->
     <div class="modal fade" id="updateusernamemodal">
         <div class="modal-dialog">
@@ -103,9 +109,8 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-user"></i></span>
                         </div>
-                        <input type="text" class="form-control" id="usrname" placeholder="change Username" name="updateusername" required>
-                        <div class="valid-feedback">Valid.</div>
-                        <div class="invalid-feedback">Please fill out this field.</div>
+                        <input type="text" class="form-control" id="usrname" placeholder="change Username" name="updateusername" >
+
                     </div>
                 </div>
                 <!-- Modal footer -->
@@ -117,7 +122,7 @@
         </div>
     </div>
 </form>
-<form method="post" id="updateemailform" class="needs-validation" novalidate>
+<form method="post" id="updateemailform" >
     <!-- The Modal -->
     <div class="modal fade" id="updateemailemodal">
         <div class="modal-dialog">
@@ -134,9 +139,8 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-envelope"></i></span>
                         </div>
-                        <input type="text" class="form-control" id="updateemail" placeholder="change Email" name="updateemail" required>
-                        <div class="valid-feedback">Valid.</div>
-                        <div class="invalid-feedback">Please fill out this field.</div>
+                        <input type="text" class="form-control" id="updateemail" placeholder="change Email" name="updateemail" >
+
                     </div>
                 </div>
                 <!-- Modal footer -->
@@ -148,7 +152,7 @@
         </div>
     </div>
 </form>
-<form method="post" id="updatepassform" class="needs-validation" novalidate>
+<form method="post" id="updatepassform" >
     <!-- The Modal -->
     <div class="modal fade" id="updatepassmodal">
         <div class="modal-dialog">
@@ -165,27 +169,21 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-lock"></i></span>
                         </div>
-                        <input type="text" class="form-control" id="currntpass" placeholder="Current passoword" name="currentpass" required>
-                        <div class="valid-feedback">Valid.</div>
-                        <div class="invalid-feedback">Please fill out this field.</div>
+                        <input type="text" class="form-control" id="currntpass" placeholder="Current passoword" name="currentpass" >
                     </div>
                     <div class="form-group input-group mb-3">
                         <label for="newpass"></label>
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-key"></i></span>
                         </div>
-                        <input type="text" class="form-control" id="newpass" placeholder="New password" name="newpass" required>
-                        <div class="valid-feedback">Valid.</div>
-                        <div class="invalid-feedback">Please fill out this field.</div>
+                        <input type="text" class="form-control" id="newpass" placeholder="New password" name="newpass" >
                     </div>
                     <div class="form-group input-group mb-3">
                         <label for="newpass1"></label>
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-key"></i></span>
                         </div>
-                        <input type="text" class="form-control" id="newpass1" placeholder="Confirm passoword" name="newpass1" required>
-                        <div class="valid-feedback">Valid.</div>
-                        <div class="invalid-feedback">Please fill out this field.</div>
+                        <input type="text" class="form-control" id="newpass1" placeholder="Confirm passoword" name="newpass1" >
                     </div>
                 </div>
                 <!-- Modal footer -->
@@ -208,31 +206,13 @@
 
 <!--footer-->
 
-<script>
-    // Disable form submissions if there are invalid fields
-    (function() {
-        'use strict';
-        window.addEventListener('load', function() {
-            // Get the forms we want to add validation styles to
-            var forms = document.getElementsByClassName('needs-validation');
-            // Loop over them and prevent submission
-            var validation = Array.prototype.filter.call(forms, function(form) {
-                form.addEventListener('submit', function(event) {
-                    if (form.checkValidity() === false) {
-                        event.preventDefault();
-                        event.stopPropagation();
-                    }
-                    form.classList.add('was-validated');
-                }, false);
-            });
-        }, false);
-    })();
-</script>
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <!-- The core Firebase JS SDK is always required and must be listed first -->
 
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="index.js"></script>
+<script src="loadnotes.js"></script>
 </body>
 </html>

@@ -185,7 +185,7 @@ include "rememberme.php";
     </div>
 </form>
 <!--Forgot Password-->
-<form method="post" id=forgotpassform" class="needs-validation" novalidate>
+<form method="post" id="forgotpassform" >
     <!-- The Modal -->
     <div class="modal fade" id="forgotpassmodal">
         <div class="modal-dialog modal-lg">
@@ -196,27 +196,26 @@ include "rememberme.php";
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <!-- Modal body -->
+                <div id="frgtpsw">
+                </div>
                 <div class="modal-body">
                     <div class="form-group input-group">
                         <label for="forgotemail"></label>
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-user"></i></span>
                         </div>
-                        <input type="text" class="form-control" id="forgotemail" placeholder="Enter email" name="forgotemail" required>
-                        <div class="valid-feedback">Valid.</div>
-                        <div class="invalid-feedback">Please fill out this field.</div>
+                        <input type="text" class="form-control" id="forgotemail" placeholder="Enter email" name="forgotemail">
                     </div>
 
                     <!-- Modal footer -->
                     <div class="modal-footer">
                         <button data-target="#signupmodal" data-dismiss="modal" data-toggle="modal" type="button" class="btn btn-outline-primary mr-auto">Register</button>
-                        <button type="submit" class="btn btn-success">Submit</button>
+                        <input type="submit" class="btn btn-success" value="submit">
                         <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
                     </div>
                 </div>
             </div>
         </div>
-
 </form>
 
 
@@ -227,7 +226,7 @@ include "rememberme.php";
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-
 <script src="index.js" type="text/javascript"></script>
+
 </body>
 </html>
