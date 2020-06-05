@@ -36,12 +36,12 @@ $("#signinform").submit(function (event) {
         data:logindatatopost,
         //if call is successful then success message
         success:function (data) {
-                if(data=="success") {
-                    window.location="loggedin.php";
-                }
-                else {
-                    $("#signinmessage").html(data);
-                }
+            if(data=="success") {
+                window.location="loggedin.php";
+            }
+            else {
+                $("#signinmessage").html(data);
+            }
         },
         error:function () {
             $("#signinmessage").html("<div class='alert alert-danger'>failure</div>");
@@ -59,11 +59,11 @@ $("#forgotpassform").submit(function (event) {
         type:"POST",
         data:datatonewpost,
         success:function (data) {
-                $("#frgtpsw").html(data);
+            $("#frgtpsw").html(data);
 
         },
         error:function () {
-                    $("#frgtpsw").html("<div class='alert alert-danger'>cannot create the ajax call</div>");
+            $("#frgtpsw").html("<div class='alert alert-danger'>cannot create the ajax call</div>");
         }
     })
 

@@ -7,12 +7,12 @@ $missingEmail="<div class='alert alert-danger'><strong>Please enter your email a
 $invalidEmail="<div class='alert alert-danger'><strong>Please enter a valid email address</strong></div>";
 $Email=$_POST["forgotemail"];
 if(empty($_POST["forgotemail"])){
-    $errors.=$missingEmail;
+    $errors .= $missingEmail;
 }
 else{
     $Email=filter_var($_POST["forgotemail"],FILTER_SANITIZE_EMAIL);
     if(!filter_var($Email,FILTER_VALIDATE_EMAIL)){
-        $errors.=$invalidEmail;
+        $errors .= $invalidEmail;
     }
 }
 if($errors){

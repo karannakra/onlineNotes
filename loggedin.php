@@ -3,7 +3,6 @@ session_start();
 if(!isset($_SESSION['user_id'])){
     header("location:index.php");
 }
-
 ?>
 <!doctype html>
 <html lang="en">
@@ -111,7 +110,7 @@ if(!isset($_SESSION['user_id'])){
             </li>
         </ul>
         <form class="form-inline my-2 my-lg-0 mr-lg-3 mr-md-3">
-            <button class='btn btn-outline-warning my-2 my-sm-0 active ' type='button' id='loggedin' ><strong id="loginname"></strong></button>
+            <button class="btn btn-outline-warning my-2 my-sm-0 active " type="button"><strong>logged in as <?php echo $_SESSION['username']?></strong></button>
         </form>
         <form class="form-inline my-2 my-lg-0">
             <a href="index.php?logout=1" class="btn btn-outline-warning my-2 my-sm-0" id="logout">logout</a>

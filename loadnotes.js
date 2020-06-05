@@ -1,13 +1,5 @@
 $(function(){
-    $.ajax({
-        url:"getusrname.php",
-        success:function (data) {
-            $("#loginname").html("logged in as "+data);
-        },
-        error:function () {
-            console.log("error")
-        }
-    });
+
     //define varibale for using them later
     var activeNote=0;
     var editMode=false;

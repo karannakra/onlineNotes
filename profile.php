@@ -64,10 +64,10 @@ if(!isset($_SESSION['user_id'])){
             </li>
         </ul>
         <form class="form-inline my-2 my-lg-0 mr-lg-3 mr-md-3">
-            <button class="btn btn-outline-warning my-2 my-sm-0 active " type="button"><strong>logged in as karan nakra</strong></button>
+            <button class="btn btn-outline-warning my-2 my-sm-0 active " type="button"><strong>logged in as <?php echo $_SESSION['username']?></strong></button>
         </form>
         <form class="form-inline my-2 my-lg-0">
-            <button class="btn btn-outline-warning my-2 my-sm-0">Logout</button>
+            <a href="index.php?logout=1" class="btn btn-outline-warning my-2 my-sm-0" id="logout">logout</a>
         </form>
     </div>
 </nav>
@@ -80,15 +80,15 @@ if(!isset($_SESSION['user_id'])){
     <table class="table table-dark table-hover text-black font-weight-bold table-bordered">
         <tr data-target="#updateusernamemodal" data-toggle="modal">
             <td>USERNAME</td>
-            <td>value</td>
+            <td><?php echo $_SESSION["username"]?></td>
         </tr>
         <tr data-target="#updateemailemodal" data-toggle="modal">
             <td>EMAIL</td>
-            <td>value</td>
+            <td><?php echo $_SESSION["email"]?></td>
         </tr>
         <tr data-target="#updatepassmodal" data-toggle="modal">
             <td>PASSWORD</td>
-            <td>value</td>
+            <td>Koni batata</td>
         </tr>
     </table>
 </div>
@@ -103,6 +103,7 @@ if(!isset($_SESSION['user_id'])){
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <!-- Modal body -->
+                <div id="updatenamemsg"></div>
                 <div class="modal-body">
                     <div class="form-group input-group mb-3">
                         <label for="usrname"></label>
@@ -122,7 +123,7 @@ if(!isset($_SESSION['user_id'])){
         </div>
     </div>
 </form>
-<form method="post" id="updateemailform" >
+<form method="post" id="updateemailform">
     <!-- The Modal -->
     <div class="modal fade" id="updateemailemodal">
         <div class="modal-dialog">
@@ -134,18 +135,19 @@ if(!isset($_SESSION['user_id'])){
                 </div>
                 <!-- Modal body -->
                 <div class="modal-body">
+                    <div id="updateemailemsg"></div>
                     <div class="form-group input-group mb-3">
                         <label for="updateemail"></label>
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-envelope"></i></span>
                         </div>
-                        <input type="text" class="form-control" id="updateemail" placeholder="change Email" name="updateemail" >
+                        <input type="text" class="form-control" id="updateemail" placeholder="change Email" name="update_email" >
 
                     </div>
                 </div>
                 <!-- Modal footer -->
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-success">Change</button>
+                    <input type="submit" class="btn btn-success" value="change">
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                 </div>
             </div>
@@ -164,31 +166,32 @@ if(!isset($_SESSION['user_id'])){
                 </div>
                 <!-- Modal body -->
                 <div class="modal-body">
+                    <div id="updatepassmessage"></div>
                     <div class="form-group input-group mb-3">
                         <label for="currntpass"></label>
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-lock"></i></span>
                         </div>
-                        <input type="text" class="form-control" id="currntpass" placeholder="Current passoword" name="currentpass" >
+                        <input type="password" class="form-control" id="currntpass" placeholder="Current passoword" name="currentpass" >
                     </div>
                     <div class="form-group input-group mb-3">
                         <label for="newpass"></label>
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-key"></i></span>
                         </div>
-                        <input type="text" class="form-control" id="newpass" placeholder="New password" name="newpass" >
+                        <input type="password" class="form-control" id="newpass" placeholder="New password" name="newpass" >
                     </div>
                     <div class="form-group input-group mb-3">
                         <label for="newpass1"></label>
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-key"></i></span>
                         </div>
-                        <input type="text" class="form-control" id="newpass1" placeholder="Confirm passoword" name="newpass1" >
+                        <input type="password" class="form-control" id="newpass1" placeholder="Confirm passoword" name="newpass1" >
                     </div>
                 </div>
                 <!-- Modal footer -->
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-success">Change</button>
+                    <input type="submit" class="btn btn-success" value="Change">
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                 </div>
             </div>
@@ -213,6 +216,7 @@ if(!isset($_SESSION['user_id'])){
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <script src="index.js"></script>
+<script src="profile.js"></script>
 <script src="loadnotes.js"></script>
 </body>
 </html>
