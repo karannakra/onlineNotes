@@ -1,8 +1,10 @@
 {
     "functions": {
-        "*.php": { "runtime": "vercel-php@0.6.0" }
+        "api/**/*.php": { "runtime": "vercel-php@0.6.0" }
     },
     "routes": [
-        { "src": "/(.*)", "dest": "/onlineNotes.php" }
+        { "src": "/(.*)",  "dest": "/api/onlineNotes.php" },
+        { "src": "/css/style.css", "dest": "/css/style.css" },
+        { "src": "/js/script.js", "dest": "/js/script.js" }
     ]
 }
